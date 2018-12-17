@@ -1,7 +1,6 @@
 package com.hjc.demo.springboot.init.controller;
 
 import com.hjc.demo.springboot.init.entity.People;
-import com.hjc.demo.springboot.init.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
