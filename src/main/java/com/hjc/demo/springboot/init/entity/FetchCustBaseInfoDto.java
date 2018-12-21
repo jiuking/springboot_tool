@@ -167,7 +167,7 @@ public class FetchCustBaseInfoDto {
         private String compCategory;
 
 
-        @Override
+       /* @Override
         public boolean equals(Object o) {
             if (this == o) {
                 return true;
@@ -182,13 +182,13 @@ public class FetchCustBaseInfoDto {
         @Override
         public int hashCode() {
             return Objects.hashCode(contractNo);
-        }
+        }*/
     }
 
     /**
      * important 任何时候只要a.equals(b),那么a.hashCode()必须和b.hashCode()相等
      */
-    @Override
+   /* @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -216,5 +216,5 @@ public class FetchCustBaseInfoDto {
         return this.getIdCard() != null ? (31 * result + this.getIdCard().hashCode())
                 : (31 * result + (this.getName() == null ? 0 : this.getName().hashCode())
                 + (this.getClientPhoneOne() == null ? 0 : this.getClientPhoneOne().hashCode()));
-    }
+    }*/
 }

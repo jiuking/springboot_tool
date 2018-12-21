@@ -131,7 +131,7 @@ public class SpringbootInitApplicationTests {
     public void testReidsPiple() {
         long start = System.currentTimeMillis();
         redisTemplate.executePipelined((RedisCallback)(redisConnection) ->{
-            for (int i = 0; i <1000 ; i++) {
+            for (int i = 0; i <10000 ; i++) {
                 FetchCustBaseInfoDto f = new FetchCustBaseInfoDto();
                 f.setName("张三"+i);
                 f.setId("12345678123333sadfdfasdss21212"+i);
@@ -191,6 +191,7 @@ public class SpringbootInitApplicationTests {
             }
         });
         System.out.println(System.currentTimeMillis() - start1);
+
     }
 }
 
