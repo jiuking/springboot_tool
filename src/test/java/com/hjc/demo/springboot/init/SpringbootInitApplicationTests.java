@@ -29,7 +29,7 @@ public class SpringbootInitApplicationTests {
     @Test
     public void testRedis() {
         long start = System.currentTimeMillis();
-        for (int i = 0; i <1000 ; i++) {
+        for (int i = 0; i <10 ; i++) {
             FetchCustBaseInfoDto f = new FetchCustBaseInfoDto();
             f.setName("张三"+i);
             f.setId("12345678123333sadfdfasdss21212"+i);
