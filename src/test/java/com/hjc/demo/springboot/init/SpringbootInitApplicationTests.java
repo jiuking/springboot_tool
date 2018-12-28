@@ -29,7 +29,7 @@ public class SpringbootInitApplicationTests {
     @Test
     public void testRedis() {
         long start = System.currentTimeMillis();
-        for (int i = 0; i <1000 ; i++) {
+        for (int i = 1000; i <1003 ; i++) {
             FetchCustBaseInfoDto f = new FetchCustBaseInfoDto();
             f.setName("张三"+i);
             f.setId("12345678123333sadfdfasdss21212"+i);
@@ -48,7 +48,7 @@ public class SpringbootInitApplicationTests {
             f.setMonIncomeMax("2323.12");
             f.setMonIncomeMin("2311.9");
             f.setSex("1");
-            f.setIdCard("1234567ABC");
+            f.setIdCard("1234567ABC"+i);
 
             List<FetchCustBaseInfoDto.ContactInfoDto> list1 = new ArrayList();
             FetchCustBaseInfoDto.ContactInfoDto contactInfoDto = new FetchCustBaseInfoDto.ContactInfoDto();
@@ -73,7 +73,7 @@ public class SpringbootInitApplicationTests {
             f.setLoanInfoLists(list2);
 
 
-            redisTemplate.opsForSet().add("asdf", f);
+            redisTemplate.opsForSet().add("asdf1", f);
 
         }
         System.out.println(System.currentTimeMillis() - start);
@@ -192,6 +192,12 @@ public class SpringbootInitApplicationTests {
         });
         System.out.println(System.currentTimeMillis() - start1);
 
+    }
+
+    @Test
+    public void testRedisInster() {
+        Set<FetchCustBaseInfoDto> re = redisTemplate.opsForSet().intersect("asdf", "asdf1");
+        System.out.println(re.size());
     }
 }
 

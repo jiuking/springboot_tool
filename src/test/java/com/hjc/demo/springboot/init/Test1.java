@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Test {
+public class Test1 {
     public static void main(String[] args) {
         List list = new ArrayList();
         list.add("a");
@@ -19,10 +19,10 @@ public class Test {
         list.forEach(System.out::println);
 
         List<Demo> list2 = new ArrayList<>();
-        Demo demo = new Test().new Demo();
+        Demo demo = new Test1().new Demo();
         demo.setName("a");
         demo.setAge("23");
-        Demo demo1 = new Test().new Demo();
+        Demo demo1 = new Test1().new Demo();
         demo1.setAge("32");
         demo1.setName("b");
 
@@ -30,7 +30,7 @@ public class Test {
         list2.add(demo1);
 
         List<Demo> list3 = new ArrayList<>();
-        Demo demo2 = new Test().new Demo();
+        Demo demo2 = new Test1().new Demo();
         demo2.setName("a");
         demo2.setAge("45");
 
