@@ -38,9 +38,9 @@ public class AverageAssignTest {
         empIds.add("7");
         empIds.add("8");
         empIds.add("9");
-//        empIds.add("10");
+        empIds.add("10");
         averageAssign(caseIds, empIds);
-        System.out.println("sdf212:"+9/10);
+        System.out.println("sdf212:"+9/4+"  " + 9%4);
     }
 
     /**
@@ -55,12 +55,10 @@ public class AverageAssignTest {
     public static List<CaseEntity> averageAssign(List<String> caseIds,List<String> empIds) {
         //客户经理数 步长
         int span = empIds.size();
-        //案件数 与客户经理数取余
-        int limit = caseIds.size() / span + 1;
-//        switch (limit) {
-//            case 0:
-//                limit = 1;
-//        }
+        //案件数 与客户经理数取整
+        int limit = caseIds.size();
+        limit = limit % span == 0 ? limit / span : limit / span + 1;
+
         Stream.iterate(0, n -> n + 1).limit(limit).forEach(a -> {
             System.out.println("=======:a"+a);
             //案件
