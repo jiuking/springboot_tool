@@ -48,7 +48,7 @@ public class SpringbootInitApplicationTests {
             f.setMonIncomeMax("2323.12");
             f.setMonIncomeMin("2311.9");
             f.setSex("1");
-            f.setIdCard("1234567ABC");
+            f.setIdCard("1234567ABC"+i);
 
             List<FetchCustBaseInfoDto.ContactInfoDto> list1 = new ArrayList();
             FetchCustBaseInfoDto.ContactInfoDto contactInfoDto = new FetchCustBaseInfoDto.ContactInfoDto();
