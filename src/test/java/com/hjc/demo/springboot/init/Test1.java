@@ -11,11 +11,12 @@ public class Test1 {
         list.add("ab");
         list.add("ac");
         List list1 = new ArrayList();
-
+        random(list);
+        System.out.println(list.size());
         list1.add("a");
 
-        list.removeAll(list1);
-
+//        list.removeAll(list1);
+        System.out.println(list.size());
         list.forEach(System.out::println);
 
         List<Demo> list2 = new ArrayList<>();
@@ -38,6 +39,12 @@ public class Test1 {
 
         list2.removeAll(list3);
         list2.forEach(System.out::println);
+    }
+
+    public static List<String> random(List<String> list) {
+        list.remove("a");
+        list.add("D");
+        return list;
     }
 
     class Demo{

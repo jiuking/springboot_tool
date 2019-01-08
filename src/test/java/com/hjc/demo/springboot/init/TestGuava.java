@@ -45,13 +45,26 @@ public class TestGuava {
             temp.forEach(System.out::println);
         });
 
-        Arrays.stream(randomArray(3, 6, 4)).boxed().forEach(System.out::println);
+        Arrays.stream(randomArray(0, 6, 6)).boxed().forEach(System.out::println);
 
         List<String> empIds1 = new ArrayList<>();
         empIds1 = empIds1.stream().filter(temp -> !StringUtils.isEmpty(temp)).collect(Collectors.toList());
         System.out.println("大小："+empIds1.size());
+        randomStr(empIds);
+        String[] s = new String[2];
+        s[0] = "123";
+        s[1] = "45";
 
+    }
 
+    public static List<String> randomStr(List<String> strings) {
+        int[] randomNum = randomArray(0,strings.size()-1,strings.size());
+        List list = new ArrayList();
+        Arrays.stream(randomNum).boxed().forEach(temp ->{
+            list.add(strings.get(temp));
+        });
+        list.forEach(System.out::println);
+        return list;
     }
 
     /**

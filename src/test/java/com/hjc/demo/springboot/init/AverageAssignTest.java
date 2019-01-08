@@ -37,10 +37,12 @@ public class AverageAssignTest {
         empIds.add("6");
         empIds.add("7");
         empIds.add("8");
-        empIds.add("9");
+//        empIds.add("9");
 //        empIds.add("10");
         averageAssign(caseIds, empIds);
-        System.out.println("sdf212:"+9/10);
+        System.out.println("sdf212:"+9%2);
+        String a = new AverageAssignTest().test();
+        System.out.println(a);
     }
 
     /**
@@ -56,7 +58,8 @@ public class AverageAssignTest {
         //客户经理数 步长
         int span = empIds.size();
         //案件数 与客户经理数取余
-        int limit = caseIds.size() / span + 1;
+        int limit = caseIds.size();
+        limit =limit % span == 0 ? limit / span : limit / span + 1;
 //        switch (limit) {
 //            case 0:
 //                limit = 1;
@@ -69,6 +72,38 @@ public class AverageAssignTest {
             System.out.println("list 大小" +list.size());
             Iterables.forEach(list, (index, str) -> {
                 empIds.stream().skip(index).limit(1).forEach(temp->{System.out.println(index+"--->"+temp + " -> " + str);});
+            });
+
+            System.out.println("--------");
+        });
+        empIds.stream().limit(1).parallel().forEach(System.out::println);
+        return null;
+    }
+
+    public List<CaseEntity> averageAssign1(List<String> caseIds,List<String> empIds) {
+//        List<CaseEntity> noAssignedList = caseService.selectList(new EntityWrapper<CaseEntity>().eq("TEL_STATUS",Constant.AssignStatus.NOT_ASSIGN.getValue()).in("id",caseIds));
+        //客户经理数 步长
+        int span = empIds.size();
+        //案件数 与客户经理数取余
+        int limit = caseIds.size() / span + 1;
+//        switch (limit) {
+//            case 0:
+//                limit = 1;
+//        }
+        Stream.iterate(0, n -> n + 1).limit(limit).forEach(a -> {
+            System.out.println("=======:a"+a);
+            //案件
+            int i = 0;
+            List<CaseEntity> list = new ArrayList<>();//noAssignedList.stream().skip(a * span).limit(span).parallel().collect(Collectors.toList());
+            System.out.println("list 大小" +list.size());
+            Iterables.forEach(list, (index, caseEntity) -> {
+                empIds.stream().skip(index).limit(1).forEach(empId->{
+                    Date now = new Date();
+                    caseEntity.setTelStatus("Y");
+                    caseEntity.setAssTime(now);
+                    caseEntity.setFuValidDays("30");
+                    caseEntity.setHandler(empId);
+                    System.out.println(index+"--->"+empId + " -> " + caseEntity);});
             });
 
             System.out.println("--------");
@@ -137,5 +172,10 @@ public class AverageAssignTest {
          * 签约放弃时间
          */
         private Date auditTime;
+    }
+
+    public <T> T test(Class<T>... obj) {
+//        T t = obj.newInstance();
+        return null;
     }
 }
