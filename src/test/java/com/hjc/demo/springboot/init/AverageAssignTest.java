@@ -39,10 +39,13 @@ public class AverageAssignTest {
         empIds.add("8");
 //        empIds.add("9");
 //        empIds.add("10");
+        empIds.add("9");
+        empIds.add("10");
         averageAssign(caseIds, empIds);
         System.out.println("sdf212:"+9%2);
-        String a = new AverageAssignTest().test();
-        System.out.println(a);
+//        String a = new AverageAssignTest().test();
+//        System.out.println(a);
+        System.out.println("sdf212:"+9/4+"  " + 9%4);
     }
 
     /**
@@ -64,6 +67,9 @@ public class AverageAssignTest {
 //            case 0:
 //                limit = 1;
 //        }
+        //案件数 与客户经理数取整
+        limit = limit % span == 0 ? limit / span : limit / span + 1;
+
         Stream.iterate(0, n -> n + 1).limit(limit).forEach(a -> {
             System.out.println("=======:a"+a);
             //案件
@@ -111,7 +117,7 @@ public class AverageAssignTest {
         empIds.stream().limit(1).parallel().forEach(System.out::println);
         return null;
     }
-    
+
     @Data
     class CaseEntity {
         private String id;
