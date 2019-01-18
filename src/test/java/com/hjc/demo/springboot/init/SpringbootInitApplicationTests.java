@@ -29,12 +29,12 @@ public class SpringbootInitApplicationTests {
     @Test
     public void testRedis() {
         long start = System.currentTimeMillis();
-        for (int i = 0; i <10 ; i++) {
+        for (int i = 1000; i <1002 ; i++) {
             FetchCustBaseInfoDto f = new FetchCustBaseInfoDto();
             f.setName("张三"+i);
             f.setId("12345678123333sadfdfasdss21212"+i);
             f.setAge("12");
-            f.setCity("23");
+            f.setCity("232");
             f.setClientId("12345678123333sadfdfasdss");
             f.setClientPhoneOne("12345678911");
             f.setClientPhoneTwo("23456789012");
@@ -73,7 +73,7 @@ public class SpringbootInitApplicationTests {
             f.setLoanInfoLists(list2);
 
 
-            redisTemplate.opsForSet().add("asdf", f);
+            redisTemplate.opsForSet().add("asdf1", f);
 
         }
         System.out.println(System.currentTimeMillis() - start);
