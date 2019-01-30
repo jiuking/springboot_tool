@@ -25,5 +25,7 @@ public class JavaNioServer {
         System.out.println(byteBuffer.hasRemaining());
         System.out.println("解析："+Charset.forName("UTF-8").decode(byteBuffer).asReadOnlyBuffer().toString());
         System.out.println("测试");
+        System.out.println("bdc");
     }
+
 }
