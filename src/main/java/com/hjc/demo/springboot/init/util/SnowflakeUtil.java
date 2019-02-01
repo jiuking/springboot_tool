@@ -7,6 +7,9 @@ import org.apache.commons.lang3.SystemUtils;
 
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author : Administrator
@@ -18,14 +21,25 @@ public class SnowflakeUtil {
     private static final Snowflake SNOWFLAKE = new Snowflake(getWorkId(), getDataCenterId(),true);
 
     public static void main(String[] args) {
+        LocalDate localDate = LocalDate.now();
+        System.out.println(localDate);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        LocalDateTime time = LocalDateTime.now();
+        String str = time.format(dateTimeFormatter);
+        System.out.println(time);
+        System.out.println(str.length());
+        System.out.println("1091158363812540460".length());
+        System.out.println("1091159516998676539".length());
+        System.out.println("9223372036854775808".length());
+        System.out.println();
         for (int i = 0; i < 1000; i++) {
 
             System.out.println(generateId());
         }
     }
 
-    public static long generateId() {
-        return SNOWFLAKE.nextId();
+    public static String generateId() {
+        return String.valueOf(SNOWFLAKE.nextId());
     }
 
     private static Long getWorkId(){

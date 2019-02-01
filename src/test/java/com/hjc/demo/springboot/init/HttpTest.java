@@ -16,6 +16,7 @@ public class HttpTest {
     public static void main(String[] args) {
         System.out.println(getWorkId());
         System.out.println(getDataCenterId());
+        System.out.println(SystemUtils.getHostName());
     }
 
     private static Long getWorkId(){

@@ -5,6 +5,8 @@ import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 
+import java.util.Date;
+
 /**
  * @author : Administrator
  * @date : 2019/1/31 0031 09:22
@@ -12,6 +14,8 @@ import org.redisson.config.Config;
  */
 public class RedissonExtSpringTest {
     public static void main(String[] args) {
+        long date = 1288834974657L;
+        System.out.println("时间："+new Date(date));
         Config config = new Config();
         config.useSingleServer().setAddress("redis://127.0.0.1:6379");
         RedissonClient redissonClient = Redisson.create(config);
@@ -35,5 +39,6 @@ public class RedissonExtSpringTest {
         lock.unlock();
         System.out.println(Thread.currentThread().getName()+"已解锁");
         System.out.println(redissonClient.isShuttingDown());
+
     }
 }
