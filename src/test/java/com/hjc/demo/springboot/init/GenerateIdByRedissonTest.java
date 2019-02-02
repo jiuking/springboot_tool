@@ -61,24 +61,20 @@ public class GenerateIdByRedissonTest {
             if (rAtomicStr.equals("0")) {
                 rAtomicStr = nowDateTime + "0000";
                 rAtomicLong.set(Long.parseLong(rAtomicStr));
-                lock.unlock();
                 return rAtomicStr;
             }
             //相等，说明是同一秒钟下的自增，则直接返回，情况2：同一秒钟下，若自增已超过4位数(9999)，则，自增的数据大于当前时间：加后缀E直接返回。
             long ex014 = Long.parseLong(rAtomicStr.substring(0, 14));
             if (rAtomicStr.substring(0, 14).equals(nowDateTime) && notExceed9999Flag) {
-                lock.unlock();
                 return rAtomicStr;
             } else if (ex014 > Long.parseLong(nowDateTime)) {
                 notExceed9999Flag = false;
-                lock.unlock();
                 return rAtomicStr + "E";//同一秒钟下，后4位自增生成已超过9999，末尾加E
             }
             rAtomicStr = nowDateTime + "0000";
             rAtomicLong.set(Long.parseLong(rAtomicStr));
             //先获取在自增，所以先自增一次
             rAtomicLong.getAndIncrement();
-            lock.unlock();
             return rAtomicStr;
         } catch (Exception e) {
             return null;
