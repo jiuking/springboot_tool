@@ -13,6 +13,9 @@ fun main(args: Array<String>) {
     printSum(3,4)
 }
 fun sum(a: Int, b: Int): Int{
+    var c= 12
+    c = 3
+    println(c)
     return a+b
 }
 fun sum1(a:Int,b:Int) = a +b

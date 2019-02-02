@@ -1,10 +1,13 @@
 package com.hjc.demo.springboot.init;
 
 import org.redisson.Redisson;
+import org.redisson.api.RAtomicLong;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -19,6 +22,17 @@ public class RedissonExtSpringTest {
         Config config = new Config();
         config.useSingleServer().setAddress("redis://127.0.0.1:6379");
         RedissonClient redissonClient = Redisson.create(config);
+        System.out.println("时间："+getDateTimeStr());
+        long dateTimeLong = getDateTimeStr();
+        //分布式自增 设置过期时间为1秒 key 设置为当前时间 R
+        String prefixKey = "R";
+        RAtomicLong rAtomicLong = redissonClient.getAtomicLong(prefixKey);
+        rAtomicLong.set(dateTimeLong);
+        String rAtomicStr = String.valueOf(rAtomicLong.getAndIncrement());
+        String seri = dateTimeLong + rAtomicStr;
+        System.out.println("rAtomicStr"+rAtomicStr);
+        System.out.println("最终："+dateTimeLong+rAtomicStr);
+        System.out.println("删除"+rAtomicLong.getAndDelete());
         RLock lock = redissonClient.getLock("A2");
         lock.lock();
         System.out.println(Thread.currentThread().getName()+"已加锁");
@@ -40,5 +54,15 @@ public class RedissonExtSpringTest {
         System.out.println(Thread.currentThread().getName()+"已解锁");
         System.out.println(redissonClient.isShuttingDown());
 
+    }
+
+    private static long getDateTimeStr() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        LocalDateTime localDateTime = LocalDateTime.of(2019,1,2,20,10,3);
+        LocalDateTime localDateTime1 = LocalDateTime.now();
+        System.out.println("2019 01 02 20 10 03".length());
+        System.out.println("=========="+localDateTime1.format(dateTimeFormatter));
+        String dateTimeStr = localDateTime.format(dateTimeFormatter)+"0000";
+        return Long.parseLong(dateTimeStr);
     }
 }
