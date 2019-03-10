@@ -18,15 +18,15 @@ public class StringTest {
         String s4 = s2 + s3;
         System.out.println(s1 == s4);
 
-        String s51 = new String("Z");//
+        String s51 = new String("1");//
         String s5 =  new String("A") + new String("B");
         String intern = s51.intern();
 
         System.out.println((s51 == intern) +"abc");
 
-        s5.intern();
 
         String s6 = "AB";
+        s5.intern();
 
         System.out.println(s5 == s6);
         System.out.println(s51 == s6);
