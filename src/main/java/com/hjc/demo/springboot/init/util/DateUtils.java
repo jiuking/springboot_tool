@@ -11,7 +11,7 @@ public class DateUtils {
     public static void main(String[] args) {
         LocalDateTime localDateTime = LocalDateTime.now();
         localDateTime.plusDays(2);
-        String str1 = "2019-03-12 23:17:09";
+        String str1 = "2019-03-11 03:17:09";
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime start = LocalDateTime.parse(str1, dtf);
         System.out.println(start + "===" + localDateTime);
@@ -27,7 +27,7 @@ public class DateUtils {
         Instant instant = start.atZone(zone).toInstant();
         Date date = Date.from(instant);
 
-        System.out.println(betweenDayDesc(date, 1));
+        System.out.println(betweenDayDesc(date, 3));
     }
 
     /**
@@ -41,10 +41,11 @@ public class DateUtils {
         LocalDateTime startDay = LocalDateTime.ofInstant(date.toInstant(),
                 ZoneId.systemDefault()).plusDays(plusDay);
         LocalDateTime now = LocalDateTime.now();
-        long betweenDay = ChronoUnit.DAYS.between(startDay, now);
-        long betweenHour = ChronoUnit.HOURS.between(startDay.plusDays(betweenDay), now);
-        long betweenMinutes = ChronoUnit.MINUTES.between(startDay.plusDays(betweenDay), now);
+        long betweenDay = ChronoUnit.DAYS.between(now, startDay);
+        long betweenHour = ChronoUnit.HOURS.between(now.plusDays(betweenDay), startDay);
+        long betweenMinutes = ChronoUnit.MINUTES.between(now.plusDays(betweenDay).plusHours(betweenHour), startDay);
         System.out.println(betweenMinutes);
+        System.out.println(startDay);
         if (betweenMinutes <= 0) {
             return "0天";
         }
