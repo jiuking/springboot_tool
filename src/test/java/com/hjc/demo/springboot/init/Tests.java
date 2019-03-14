@@ -1,5 +1,6 @@
 package com.hjc.demo.springboot.init;
 
+import com.google.common.collect.Lists;
 import com.hjc.demo.springboot.init.entity.People;
 
 import java.util.ArrayList;
@@ -31,6 +32,14 @@ public class Tests {
                 System.out.println("a:"+a);
             });
 //            System.out.println(temp);
+        });
+//        list.forEach(System.out::println);
+
+        list = Lists.transform(list,temp->{
+            if (temp.getName().equals("3")){
+                temp.setAge(21);
+            }
+            return temp;
         });
         list.forEach(System.out::println);
     }
