@@ -10,6 +10,8 @@ public class HTMLFilter implements Filter {
                 //后面添加的是便于我们观察代码执行步骤的字符串
                 "----HTMLFilter()";
         if (true) {
+          //判断是否执行
+            System.out.println("不执行");
             return;
         }
         chain.doFilter(request, response,chain);
