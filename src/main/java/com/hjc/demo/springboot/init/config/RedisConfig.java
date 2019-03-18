@@ -23,7 +23,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 /**
  * @author hjc
  */
-@Configuration
+//@Configuration
 public class RedisConfig {
 
     @Bean
@@ -52,7 +52,7 @@ public class RedisConfig {
     }
 
     @Primary
-    @Bean
+//    @Bean
     public RedissonClient redissonClient() {
         Config config = new Config();
         config.useSingleServer()
