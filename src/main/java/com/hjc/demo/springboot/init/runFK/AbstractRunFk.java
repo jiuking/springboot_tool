@@ -9,23 +9,23 @@ public abstract class AbstractRunFk {
         return next;
     }
 
-    public final void support(Object trouble) {
-        if(resolve(trouble)) {
-            done(trouble);
+    public final void support(RunFKEntity trouble) {
+        if(isRunFK(trouble)) {
+            runFK(trouble);
         } else if (next != null) {
             next.support(trouble);
         } else {
-            fail(trouble);
+            notRunFK(trouble);
         }
     }
 
-    protected abstract boolean resolve(Object trouble);
+    protected abstract boolean isRunFK(RunFKEntity trouble);
 
-    protected void done(Object trouble) {
+    protected void runFK(Object trouble) {
         System.out.println(trouble + " is resolved by " + this + ".");
     }
 
-    protected void fail(Object trouble) {  // 未解决
+    protected void notRunFK(Object trouble) {  // 未解决
         System.out.println(trouble + " cannot be resolved.");
     }
 }

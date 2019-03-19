@@ -1,9 +1,13 @@
 package com.hjc.demo.springboot.init.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.hjc.demo.springboot.init.entity.People;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -26,5 +30,14 @@ public class PeopleController {
 //        redisTemplate.opsForSet().add("asdf", people);
         redisTemplate.delete("asdf");
         return people.getName();
+    }
+
+    @RequestMapping("getPeople")
+        public String getPeople(@RequestBody String jsonParam) {
+        People people = new People();
+        people.setName("sdf张三");
+        people.setAge(12);
+        System.out.println(jsonParam);
+        return JSON.toJSONString(people);
     }
 }
