@@ -10,7 +10,8 @@ public class StringTest {
     static final String s3 = "bc";
     public static void main(String[] args) {
         String a = "abc";
-        String b = new String("abc").intern();
+        String b = new String("abc");
+        b.intern();
         System.out.println(a == b);
 
         final String s1 = "abc";

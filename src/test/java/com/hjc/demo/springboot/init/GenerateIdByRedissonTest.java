@@ -32,16 +32,23 @@ public class GenerateIdByRedissonTest {
         for (int i = 0; i < 1000; i++) {
             System.out.println("end---------"+generateIdNowDateTimeByRedis()+i);
         }
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         redissonClient.shutdown();
     }
 
     /**
+     *
      * 以秒为区分，递增。例如：
      * 2019 02 02 12 37 20 0000
      * 2019 02 02 12 37 20 0001
      * 2019 02 02 12 37 20 0002
      * 。。。。
      * 2019 020 2 12 37 21 0000
+     * 超过则添加后缀E
      *
      * @return
      */
