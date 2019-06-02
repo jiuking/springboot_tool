@@ -19,9 +19,9 @@
 
     <insert id="createUser" parameterMap="User" useGeneratedKeys="true" keyProperty="id">
         insert into
-            user(id,username)
+            user(username,id)
         values
-            (#{id},#{username})
+            (#{username},#{id})
     </insert>
 
     <select id="findOne" resultMap="BaseResultMap">

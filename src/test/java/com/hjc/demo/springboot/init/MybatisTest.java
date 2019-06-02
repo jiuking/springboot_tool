@@ -35,7 +35,7 @@ public class MybatisTest {
     @Test
     public void createUser() {
         User user = new User();
-        user.setId("3");
+        user.setId("5");
         user.setUsername("李四");
         userDao.createUser(user);
     }

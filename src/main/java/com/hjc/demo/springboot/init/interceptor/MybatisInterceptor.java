@@ -50,11 +50,14 @@ public class MybatisInterceptor implements Interceptor {
            obj =  invocation.proceed();
         } catch (Exception e) {
             //打印错误信息 移除sql
+            System.out.println(e);
             addSql = false;
         }finally {
             if (addSql) {
                 //添加sql到文件
+                System.out.println("添加到文件");
             }
+
             return obj;
         }
     }
