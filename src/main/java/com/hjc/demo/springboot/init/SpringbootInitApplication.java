@@ -1,20 +1,22 @@
 package com.hjc.demo.springboot.init;
 
 import com.hjc.demo.springboot.init.entity.People;
+import com.hjc.demo.springboot.init.interceptor.JpaInterceptor;
+import com.hjc.demo.springboot.init.interceptor.MybatisInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
-
-import java.beans.ConstructorProperties;
 
 /**
  * @Author: hjc
  * @Date: 15:42 2018/12/13 0013
  */
 @SpringBootApplication
+//@MapperScan("com.hjc.demo.springboot.init.dao")
 public class SpringbootInitApplication {
 
     public static void main(String[] args) {
@@ -26,6 +28,17 @@ public class SpringbootInitApplication {
     public People people() {
         return new People();
     }
+
+    @Bean
+    public MybatisInterceptor mybatisSqlInterceptor(){
+        return  new MybatisInterceptor();
+    }
+
+    /*@Bean
+    public JpaInterceptor jpaInterceptor() {
+        return new JpaInterceptor();
+    }*/
+
 
 }
 

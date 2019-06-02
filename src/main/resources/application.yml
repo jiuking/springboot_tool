@@ -7,3 +7,32 @@ spring:
     host: 127.0.0.1
     port: 6379
 #    password: 123456
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/springbootdb?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+    properties:
+      hibernate:
+        session_factory:
+          statement_inspector: com.hjc.demo.springboot.init.interceptor.JpaInterceptor
+        ejb:
+          interceptor: com.hjc.demo.springboot.init.interceptor.JpaInterceptor
+mybatis:
+  typeAliasesPackage: com.hjc.demo.springboot.init.entity.User
+  mapperLocations: classpath:mapper/*.xml
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
