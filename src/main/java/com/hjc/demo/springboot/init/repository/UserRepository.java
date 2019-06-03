@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 public interface UserRepository extends JpaRepository<UserEntity,Integer> {
 
     @Modifying
-    @Query(value = "update user_entity u set u.id = ?1 where u.username = ?2" ,nativeQuery = true)
+    @MyAnnoatation
+    @Query(value = "update user_entity u set u.id = ?1 where u.username0 = ?2" ,nativeQuery = true)
     void updateUser(Integer id, String username);
 }

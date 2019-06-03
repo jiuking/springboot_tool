@@ -10,12 +10,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * @Author: hjc
  * @Date: 15:42 2018/12/13 0013
  */
 @SpringBootApplication
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 //@MapperScan("com.hjc.demo.springboot.init.dao")
 public class SpringbootInitApplication {
 

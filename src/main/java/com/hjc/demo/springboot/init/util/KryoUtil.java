@@ -3,6 +3,8 @@ package com.hjc.demo.springboot.init.util;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.esotericsoftware.kryo.serializers.BeanSerializer;
+import com.esotericsoftware.kryo.serializers.CompatibleFieldSerializer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,6 +20,9 @@ public class KryoUtil {
         protected Kryo initialValue() {
             Kryo kryo = new Kryo();
             kryo.setReferences(false);
+            kryo.setRegistrationRequired(false);
+            kryo.setDefaultSerializer(CompatibleFieldSerializer.class);
+//            kryo.register(new BeanSerializer<>())
             return kryo;
         }
     };
@@ -26,7 +31,7 @@ public class KryoUtil {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         Kryo kryo = getKryo();
         Output output = new Output(outputStream);
-        kryo.writeObject(output, obj);
+        kryo.writeClassAndObject(output, obj);
         output.flush();
         return outputStream.toByteArray();
     }
@@ -38,7 +43,7 @@ public class KryoUtil {
         Input input = new Input(inputStream);
         T obj;
         while (input.available() > 0) {
-            obj = kryo.readObject(input, clazz);
+            obj = (T) kryo.readClassAndObject(input);
             list.add(obj);
         }
         return list;

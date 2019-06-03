@@ -5,8 +5,12 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.kryo.serializers.BeanSerializer;
 import com.esotericsoftware.kryo.serializers.BlowfishSerializer;
+import com.hjc.demo.springboot.init.entity.KryoTestEntity;
+import com.hjc.demo.springboot.init.entity.User;
+import com.hjc.demo.springboot.init.util.FileUtil;
 import com.hjc.demo.springboot.init.util.KryoUtil;
 import lombok.Data;
+import org.junit.Test;
 
 import javax.crypto.KeyGenerator;
 import java.io.*;
@@ -70,7 +74,43 @@ public class KryoTest {
         System.out.println(p);
         System.out.println(p2);
     }
+
+    @Test
+    public void testObject() throws IOException {
+        KryoTestEntity kryoTestEntity = new KryoTestEntity();
+        kryoTestEntity.setType("更新");
+        kryoTestEntity.setTableName("user");
+        com.hjc.demo.springboot.init.entity.User user = new com.hjc.demo.springboot.init.entity.User();
+        user.setId("12");
+        user.setUsername("测试");
+        kryoTestEntity.setObject(user);
+        byte[] asdf = KryoUtil.obj2ByteArray(kryoTestEntity);
+        System.out.println(KryoUtil.byteArray2Obj(asdf,KryoTestEntity.class));
+    }
+
+    @Test
+    public void testObjectToFile() throws IOException {
+        KryoTestEntity kryoTestEntity = new KryoTestEntity();
+        kryoTestEntity.setType("更新");
+        kryoTestEntity.setTableName("user");
+        com.hjc.demo.springboot.init.entity.User user = new com.hjc.demo.springboot.init.entity.User();
+        user.setId("12");
+        user.setUsername("测试");
+
+//        user.setPlus("多余");
+        kryoTestEntity.setObject(user);
+        byte[] asdf = KryoUtil.obj2ByteArray(kryoTestEntity);
+        FileUtil.writeFile("E:\\test\\2.bin",asdf);
+//        System.out.println(KryoUtil.byteArray2Obj(asdf,KryoTestEntity.class));
+    }
+
+    @Test
+    public void readObjectFile() throws IOException {
+        byte[] bytes = FileUtil.readFile("E:\\test\\2.bin");
+        System.out.println(KryoUtil.byteArray2Obj(bytes,KryoTestEntity.class));
+    }
 }
+
 
 @Data
 class Person1 implements Serializable {

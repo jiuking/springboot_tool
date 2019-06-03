@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user_entity")
 @EntityListeners(value = {ObjectListener.class})
-public class UserEntity {
+public class UserEntity extends Base{
     @Id
     private Integer id;
     private String username;
