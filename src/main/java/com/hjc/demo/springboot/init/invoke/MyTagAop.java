@@ -25,6 +25,7 @@ public class MyTagAop {
     public void before(JoinPoint jp, Table table) {
         System.out.println("=+++++="+jp.getTarget().getClass());
     }
+
     @Pointcut("@annotation(com.hjc.demo.springboot.init.repository.MyAnnoatation)")
     public void tableAno1() {
 

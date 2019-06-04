@@ -120,9 +120,9 @@ public class SpringbootInitApplicationTests {
         List<FetchCustBaseInfoDto> obj = (List<FetchCustBaseInfoDto>) redisTemplate.execute((RedisCallback<List<FetchCustBaseInfoDto>>)(redisConnection) -> {
             redisConnection.openPipeline();
             System.out.println(redisTemplate.opsForSet().size("asdf3"));
-            List<FetchCustBaseInfoDto> result = redisTemplate.opsForSet().pop("asdf3",2);
-            redisConnection.closePipeline();
-            return result;
+//            List<FetchCustBaseInfoDto> result = redisTemplate.opsForSet().pop("asdf3",2);
+//            redisConnection.closePipeline();
+            return null;//result;
         });
         obj.forEach(System.out::println);
     }

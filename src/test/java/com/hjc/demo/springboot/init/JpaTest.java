@@ -29,8 +29,8 @@ public class JpaTest {
 
     @Test
     public void testOne() {
-        UserEntity userEntityList = userRepository.findById(2).get();
-        System.out.println(userEntityList);
+//        UserEntity userEntityList = userRepository.findById(2).get();
+//        System.out.println(userEntityList);
     }
 
     @Test
@@ -76,6 +76,6 @@ public class JpaTest {
 
     @Test
     public void testCustom() {
-        userRepository.updateUser(1, "asdf");
+        userRepository.updateUser(1, "as0df");
     }
 }

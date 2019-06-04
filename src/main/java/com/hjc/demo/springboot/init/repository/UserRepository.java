@@ -8,12 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
-@Repository
 @Transactional
 public interface UserRepository extends JpaRepository<UserEntity,Integer> {
 
     @Modifying
     @MyAnnoatation
-    @Query(value = "update user_entity u set u.id = ?1 where u.username0 = ?2" ,nativeQuery = true)
+    @Query(value = "update user_entity u set u.id = ?1 where u.username = ?2" ,nativeQuery = true)
     void updateUser(Integer id, String username);
 }
