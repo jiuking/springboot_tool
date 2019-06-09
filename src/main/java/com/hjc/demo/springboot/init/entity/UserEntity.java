@@ -2,15 +2,13 @@ package com.hjc.demo.springboot.init.entity;
 
 import com.hjc.demo.springboot.init.jpaListener.ObjectListener;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user_entity")
 @EntityListeners(value = {ObjectListener.class})
 public class UserEntity extends Base{
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
     private String username;

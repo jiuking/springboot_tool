@@ -3,8 +3,11 @@ package com.hjc.demo.springboot.init;
 import com.hjc.demo.springboot.init.entity.User;
 import com.hjc.demo.springboot.init.repository.UserRepository;
 import com.hjc.demo.springboot.init.entity.UserEntity;
+import org.apache.logging.slf4j.SLF4JLogger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -15,6 +18,8 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JpaTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(JpaTest.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -36,7 +41,7 @@ public class JpaTest {
     @Test
     public void createOne() {
         UserEntity userEntity = new UserEntity();
-        userEntity.setId(3);
+        userEntity.setId(10);
         userEntity.setUsername("丽水");
         userRepository.save(userEntity);
     }
@@ -76,6 +81,18 @@ public class JpaTest {
 
     @Test
     public void testCustom() {
+        logger.info("测试logger");
         userRepository.updateUser(1, "as0df");
+    }
+
+    @Test
+    public void delCustom() {
+        logger.info("删除logger");
+        userRepository.deleteUser(1);
+    }
+
+    @Test
+    public void test1() {
+        userRepository.update1();
     }
 }

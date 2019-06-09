@@ -23,4 +23,6 @@ public interface UserDao {
     User findOne(String id);
 
     void deleteUser(User user);
+
+    void updateUser(User user);
 }

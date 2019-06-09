@@ -10,7 +10,7 @@ import java.util.Date;
 @MappedSuperclass
 public class Base implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Integer id;
     public Date createTime;
 

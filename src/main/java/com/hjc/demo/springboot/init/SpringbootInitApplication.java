@@ -1,5 +1,6 @@
 package com.hjc.demo.springboot.init;
 
+import com.hjc.demo.springboot.init.config.DruidConfig;
 import com.hjc.demo.springboot.init.entity.People;
 import com.hjc.demo.springboot.init.interceptor.JpaInterceptor;
 import com.hjc.demo.springboot.init.interceptor.MybatisInterceptor;
@@ -13,6 +14,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
